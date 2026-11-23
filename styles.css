@@ -65,6 +65,7 @@ p { margin: 0; }
 .intro { padding-top: clamp(20px, 2.6vw, 36px); padding-bottom: 4px; }
 .introin { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 20px 48px; align-items: end; }
 .lede p { margin-top: 12px; font-size: 16px; color: var(--ink-2); max-width: 60ch; }
+.lede .kids-link a { color: var(--ink); font-weight: 600; text-underline-offset: 4px; }
 .tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 2px solid var(--ink); align-self: end; }
 .tile { padding: 6px 12px 4px 0; }
 .tile + .tile { padding-left: 12px; border-left: 1px solid var(--line); }

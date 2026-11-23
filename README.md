@@ -2,6 +2,8 @@
 
 **Live site: https://y87cbw5jrm-svg.github.io/human-inventions/**
 
+**Picture book for ages 8 to 12: https://y87cbw5jrm-svg.github.io/human-inventions/story/**
+
 An interactive timeline of 151 technologies and 20 key discoveries, from Lomekwian stone tools (3.3 million years ago) to generative AI. It is inspired by the "Consumption spreads faster today" chart of U.S. household adoption. Each line is the estimated **share of all people alive** who used the technology, or lived in a community that did. That measure works across the whole span, so the Stone Age and the smartphone sit on one axis.
 
 ## What you can do
@@ -18,6 +20,15 @@ An interactive timeline of 151 technologies and 20 key discoveries, from Lomekwi
 - **Table**: every technology with sortable dates and shares. It is also the accessible version of the chart.
 - Links to a technology work: `index.html#iron`.
 
+## The picture book (`story/`)
+
+A children's encyclopedia that tells the same history as a story, one page per invention, in time order. It has 197 pages: a cover, contents, nine chapters by age (from "Before people like us" to "The Information Age"), every technology and discovery in the dataset, the two human milestones, the twelve times know-how was lost, and an ending ("What will you invent?").
+
+- Each page has a drawn illustration, the date and place of the first evidence, a short story written for 8 to 12-year-olds, a "Wow!" fact, the big idea for mental shifts, how many people use it today, and links to what it was built on and what it led to.
+- Turn pages with the Back and Next buttons, the arrow keys or a swipe. The ribbon at the top shows where you are in history, and the book remembers the last page you read.
+- `story/stories-a.js` (chapters 1 to 4) and `story/stories-b.js` (chapters 5 to 9) hold the text in a simple format: `@page-id`, then paragraphs, then lines starting `!` (Wow fact), `*` (big idea), `=` (today), `>` (who made it) or `#` (title).
+- `story/art.js` draws every picture from one small kit of shapes; `story/story.js` builds the pages from `data.js`.
+
 ## Files
 
 | File | What it is |
@@ -28,6 +39,7 @@ An interactive timeline of 151 technologies and 20 key discoveries, from Lomekwi
 | `app.js` | Charts and interaction (vanilla JS, canvas and SVG, no dependencies) |
 | `validate.mjs` | Checks the dataset: `node validate.mjs` |
 | `logo.svg`, `og.png` | The logo and the link-preview image |
+| `story/` | The picture book: `index.html`, `story.css`, `story.js` (book engine), `art.js` (illustrations), `stories-a.js` and `stories-b.js` (text), `og.png` |
 
 ## Running
 

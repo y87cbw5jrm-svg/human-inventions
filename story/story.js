@@ -10,6 +10,8 @@
 (function () {
   'use strict';
   var D = window.INVENTIONS, ART = window.ART || { get: function () { return null; } };
+  // adult pages can show a photograph of a real object instead of the drawing (photos/photos.js)
+  var PHOTOS = window.PHOTOS || {};
   var NOW = D.now;
   var LEVEL = window.LEVEL || 'kids', ROOT = window.STORY_ROOT || '';
   var CHART = ROOT + '../';
@@ -203,6 +205,15 @@
     return '<svg class="art" viewBox="0 0 120 120" aria-hidden="true">' + inner + '</svg>';
   }
 
+  // the picture panel: a credited photograph on adult pages where one exists, otherwise the drawing
+  function plate(id, pill, fallback) {
+    var ph = LEVEL === 'adults' && PHOTOS[id];
+    var when = pill ? '<div class="when"><span class="pill">' + esc(pill) + '</span></div>' : '';
+    if (!ph) return '<div class="plate">' + art(id, fallback) + when + '</div>';
+    return '<figure class="photo"><div class="frame"><img src="' + ROOT + 'photos/' + ph.file + '" width="' + ph.w + '" height="' + ph.h + '" alt="' + esc(ph.alt || ph.caption) + '" decoding="async"></div>' +
+      '<figcaption>' + esc(ph.caption) + '<span class="credit">' + esc(ph.credit) + ' · <a href="' + ph.licenseUrl + '" rel="license">' + esc(ph.license) + '</a> · <a href="' + ph.source + '">source</a></span></figcaption></figure>';
+  }
+
   /* ---------- rendering ---------- */
   var book = document.getElementById('book'), pager = document.getElementById('pager');
   var ribbon = document.getElementById('ribbon'), whereEl = document.getElementById('where');
@@ -289,7 +300,7 @@
     var badges = '<span class="badge">' + (p.type === 'event' ? 'Discovery' : 'Invention') + '</span>' +
       (x.shift ? '<span class="badge" style="background:color-mix(in srgb,' + colorOf(x.cat) + ' 22%,var(--paper))">' + (LEVEL === 'adults' ? '✦ Mental shift' : '✦ Big idea') + '</span>' : '');
     return '<article class="spread" style="--c:' + colorOf(x.cat) + '">' +
-      '<div class="plate">' + art(x.id) + '<div class="when"><span class="pill">' + esc(whenLong(x.first)) + '</span></div></div>' +
+      plate(x.id, whenLong(x.first)) +
       '<div><p class="label"><i class="dot"></i>' + esc(cat.name) + badges + '</p>' +
       '<h1 tabindex="-1">' + esc(nameOf(p)) + '</h1>' +
       '<p class="facts"><span><b>When:</b> ' + esc(when(x.first)) + '</span><span><b>Where:</b> ' + esc(x.where) + '</span>' +
@@ -309,7 +320,7 @@
   function renderHuman(p) {
     var h = p.human, t = TEXT[p.id] || {};
     return '<article class="spread" style="--c:var(--c-body)">' +
-      '<div class="plate">' + art(p.id) + '<div class="when"><span class="pill">' + esc(whenLong(h.year)) + '</span></div></div>' +
+      plate(p.id, whenLong(h.year)) +
       '<div><p class="label"><span class="badge">Meet the inventors</span></p>' +
       '<h1 tabindex="-1">' + esc(nameOf(p)) + '</h1>' +
       '<p class="facts"><span><b>When:</b> ' + esc(when(h.year)) + '</span><span><b>Where:</b> ' + esc(h.where) + '</span></p>' +
@@ -322,7 +333,7 @@
     var techs = l.techs.map(function (id) { return BYID[id]; }).filter(Boolean);
     var back = l.regained ? 'Found again: ' + when(l.regained) : 'Never found again';
     return '<article class="spread lost" style="--c:var(--lost)">' +
-      '<div class="plate">' + art(p.id, 'lost') + '<div class="when"><span class="pill">' + esc(whenLong(l.year)) + '</span></div></div>' +
+      plate(p.id, whenLong(l.year), 'lost') +
       '<div><p class="label"><span class="badge lostb">' + L.lostBadge + '</span><span>' + L.lostTag + '</span></p>' +
       '<h1 tabindex="-1">' + esc(nameOf(p)) + '</h1>' +
       '<p class="facts"><span><b>When:</b> ' + esc(when(l.year)) + '</span><span><b>Where:</b> ' + esc(l.where) + '</span><span><b>' + esc(back) + '</b></span></p>' +

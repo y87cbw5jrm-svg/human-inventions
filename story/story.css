@@ -159,7 +159,7 @@ main { max-width: 1180px; margin: 0 auto; padding: 28px max(4vw, 16px) 40px; out
 }
 @media (prefers-reduced-motion: no-preference) {
   main.turn { animation: turn .28s ease-out; }
-  @keyframes turn { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+  @keyframes turn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 }
 
 /* drawn pictures: ink outlines with flat fills */
@@ -186,3 +186,46 @@ main { max-width: 1180px; margin: 0 auto; padding: 28px max(4vw, 16px) 40px; out
 .art .nos { stroke: none; }
 .art .tx { font-family: var(--title); font-weight: 700; fill: var(--ink); stroke: none; }
 .spread.lost .art { --ink: #f2f0ea; --paper: #2d2a35; }
+
+/* reading levels */
+.levels { flex: none; display: flex; gap: 2px; padding: 3px; border: 2px solid var(--line); border-radius: 999px; }
+.levels a { text-decoration: none; font-weight: 800; font-size: 14px; line-height: 1; padding: 8px 12px; border-radius: 999px; color: var(--muted); white-space: nowrap; }
+.levels a:hover { color: var(--ink); }
+.levels a.on { background: var(--ink); color: var(--paper); }
+.box.ask { background: var(--paper); border: 2px dashed color-mix(in srgb, var(--c, var(--ink)) 55%, var(--paper)); }
+.sources { margin-top: 26px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 14px; line-height: 1.5; color: var(--ink-2); }
+.sources h2 { font-size: 15px; margin-bottom: 4px; color: var(--ink); }
+.sources ul { margin: 0; padding-left: 18px; }
+.sources li { margin: 3px 0; }
+.chartline { margin-top: 10px; font-size: 15px; color: var(--ink-2); }
+.chartline a { color: var(--ink); font-weight: 700; }
+.cover .note a { color: var(--ink); }
+
+/* ages 4 to 7: big pictures, big words, nothing extra */
+body.lv-little .story p { font-size: 25px; line-height: 1.5; }
+body.lv-little .box { font-size: 21px; }
+body.lv-little .facts, body.lv-little .kin, body.lv-little .label .dot, body.lv-little .label .badge:not(.lostb) { display: none; }
+body.lv-little .label { font-size: 16px; }
+body.lv-little .spread h1 { font-size: clamp(40px, 5.6vw, 64px); }
+body.lv-little .today { font-size: 20px; }
+
+/* adults: a reading page */
+body.lv-adults .story p { font-size: 18px; line-height: 1.65; max-width: 68ch; }
+body.lv-adults .box { font-size: 16.5px; line-height: 1.55; }
+body.lv-adults .box h2 { font-size: 17px; }
+body.lv-adults .today { font-weight: 600; font-size: 17px; }
+body.lv-adults .spread { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); }
+@media (max-width: 860px) { body.lv-adults .spread { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 760px) { .where { display: none; } .levels { margin-left: auto; } }
+@media (max-width: 600px) {
+  .levels a { font-size: 13px; padding: 7px 9px; }
+  .tocbtn { padding: 7px 12px; font-size: 14px; }
+  body.lv-little .story p { font-size: 22px; }
+}
+body.lv-little .spread:not(.lost) .label { display: none; }
+@media (max-width: 380px) {
+  .bar { gap: 6px; padding-left: 12px; padding-right: 12px; }
+  .brand svg { width: 32px; height: 28px; }
+  .levels a { font-size: 12px; padding: 6px 7px; }
+  .tocbtn { padding: 6px 10px; font-size: 13px; }
+}

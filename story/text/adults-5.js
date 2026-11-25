@@ -341,7 +341,7 @@ This chapter also includes discoveries about ourselves: the systematic biases of
 In "Judgment under uncertainty: heuristics and biases" (1974), Amos Tversky and Daniel Kahneman showed that people estimate probabilities using mental shortcuts, such as representativeness, availability and anchoring, that produce predictable errors. Their prospect theory (1979) described how people weigh losses more heavily than equivalent gains. Kahneman received the 2002 Nobel Prize in economics; Tversky had died in 1996.
 
 The work founded behavioural economics and influenced medicine, law and public policy, including "nudge" interventions. Some later findings in the field, notably certain priming effects, have failed to replicate, prompting reforms in psychological research. Cross-cultural research adds a twist: Henrich and colleagues note that many "universal" findings come from WEIRD (Western, educated, industrialised, rich, democratic) samples.
-! The illustration shows the Müller-Lyer illusion. In 1960s studies, people from some non-Western societies, such as San foragers, were much less susceptible to it than American undergraduates.
+! In 1960s studies of the Müller-Lyer illusion, in which two equal lines look unequal because of the arrowheads at their ends, people from some non-Western societies, such as San foragers, were much less susceptible to it than American undergraduates.
 = Research on biases shapes design of forms, pensions, medical decision aids and public policy worldwide.
 # Cognitive biases
 ^ Tversky, A. and Kahneman, D. (1974). Judgment under uncertainty: heuristics and biases. Science 185.

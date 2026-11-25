@@ -1,15 +1,17 @@
 # Human Inventions: how technology spread, from the first fire to today
 
-**Live site: https://y87cbw5jrm-svg.github.io/human-inventions/**
+**Live site: https://y87cbw5jrm-svg.github.io/human-inventions/** (the book, ages 8 to 12)
 
 **The book, in three reading levels:**
 - Ages 4 to 7, read aloud: https://y87cbw5jrm-svg.github.io/human-inventions/story/little/
-- Ages 8 to 12: https://y87cbw5jrm-svg.github.io/human-inventions/story/
+- Ages 8 to 12: https://y87cbw5jrm-svg.github.io/human-inventions/ (the home page; the old `story/` address redirects there)
 - Adults, with sources: https://y87cbw5jrm-svg.github.io/human-inventions/story/adults/
 
-An interactive timeline of 151 technologies and 20 key discoveries, from Lomekwian stone tools (3.3 million years ago) to generative AI. It is inspired by the "Consumption spreads faster today" chart of U.S. household adoption. Each line is the estimated **share of all people alive** who used the technology, or lived in a community that did. That measure works across the whole span, so the Stone Age and the smartphone sit on one axis.
+**The chart:** https://y87cbw5jrm-svg.github.io/human-inventions/chart/
 
-## What you can do
+The chart is an interactive timeline of 151 technologies and 20 key discoveries, from Lomekwian stone tools (3.3 million years ago) to generative AI. It is inspired by the "Consumption spreads faster today" chart of U.S. household adoption. Each line is the estimated **share of all people alive** who used the technology, or lived in a community that did. That measure works across the whole span, so the Stone Age and the smartphone sit on one axis.
+
+## The chart (`chart/`)
 
 - **Curves**: one line per technology, like the original chart. Choose milestones, mental shifts or everything, switch between a log and a linear time axis, jump to a period (all time, 100,000 years, since farming, since 1 CE, since 1750, since 1900), drag to pan, and pinch, Ctrl/⌘ + scroll or double-click to zoom.
 - **Rows**: every technology on its own row, sorted by age, category, current use or speed of spread.
@@ -21,15 +23,15 @@ An interactive timeline of 151 technologies and 20 key discoveries, from Lomekwi
 - **Readout**: hover anywhere to see what share of people used each technology in that year. Click a line for its story: first evidence, site, when it reached 10%, 50% and 90%, peak and decline.
 - **Speed**: years from first appearance to 10%, 25% or 50% of humanity, plotted against when each technology appeared, with medians by era.
 - **Table**: every technology with sortable dates and shares. It is also the accessible version of the chart.
-- Links to a technology work: `index.html#iron`.
+- Links to a technology work: `chart/#iron`.
 
-## The book (`story/`)
+## The book (home page and `story/`)
 
 The same history told as a book, one page per invention in time order, at three reading levels that share every page. A switch in the header moves between levels on the same page.
 
 - **197 pages**: a cover, contents, nine chapters by age (from "Before people like us" to "The Information Age"), every technology and discovery in the dataset, the two human milestones, the twelve times know-how was lost, and an ending.
 - **Ages 4 to 7** (`story/little/`): a big picture, two or three sentences to read aloud, and a "Let's talk" question on every page, with simpler chapter and page titles.
-- **Ages 8 to 12** (`story/`): a short story, a "Wow!" fact, the big idea for mental shifts, how many people use it today, and links to what it was built on and what it led to.
+- **Ages 8 to 12** (the home page, `index.html`): a short story, a "Wow!" fact, the big idea for mental shifts, how many people use it today, and links to what it was built on and what it led to.
 - **Adults** (`story/adults/`): about 100 to 250 words per page on the evidence, how it spread, open debates and the cumulative-culture angle, a "Worth knowing" note, what the chart's line measures with a link to it, and sources on every page.
 - **Photographs (adults)**: every adult page shows a photograph, most of them of a real object, such as the Rosetta Stone, a 3,500-year-old Egyptian loaf or Niépce's first photograph, instead of the drawing. Images come from museum open-access collections (the Metropolitan Museum of Art, the Cleveland Museum of Art and the Art Institute of Chicago) and from Wikimedia Commons. Only public-domain, CC0 and Creative Commons images are used, never "non-commercial" ones; each photo carries its caption, credit, licence and a link to its source record. Pages about early humans show the sites and tools rather than human remains, and pages about ideas show an iconic moment or person instead. Photos are listed in `story/photos/photos.js`, with web-sized copies in `story/photos/`.
 - Turn pages with the Back and Next buttons, the arrow keys or a swipe. The ribbon at the top shows where you are in history, and each level remembers the last page read.
@@ -40,17 +42,16 @@ Text lives in `story/text/`: `little-a.js` and `little-b.js`, `kids-a.js` and `k
 
 | File | What it is |
 |---|---|
-| `index.html` | Page structure and the method text |
-| `styles.css` | Layout and light/dark themes |
-| `data.js` | The dataset: categories, and per technology the first evidence, site, confidence, adoption anchor points and description |
-| `app.js` | Charts and interaction (vanilla JS, canvas and SVG, no dependencies) |
+| `index.html` | The home page: the book for ages 8 to 12 |
+| `story/` | The rest of the book: `little/` and `adults/` (the other levels), `story.css`, `story.js` (book engine), `art.js` (illustrations), `text/` (all text), `photos/` (adult photographs), share images; `story/index.html` redirects old links to the home page |
+| `chart/` | The chart: `index.html` (page structure and the method text), `styles.css` (layout and light/dark themes), `app.js` (charts and interaction, vanilla JS, canvas and SVG, no dependencies), `og.png` (link-preview image) |
+| `data.js` | The dataset shared by the book and the chart: categories, and per technology the first evidence, site, confidence, adoption anchor points and description |
 | `validate.mjs` | Checks the dataset: `node validate.mjs` |
-| `logo.svg`, `og.png` | The logo and the link-preview image |
-| `story/` | The book: `index.html` (ages 8–12), `little/` and `adults/` (the other levels), `story.css`, `story.js` (book engine), `art.js` (illustrations), `text/` (all text), share images |
+| `logo.svg` | The logo |
 
 ## Running
 
-No build step. Open `index.html` in a browser, or serve the folder:
+No build step. Serve the folder and open it in a browser (the book is the home page, the chart is at `chart/`):
 
 ```
 python3 -m http.server 8000

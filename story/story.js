@@ -4,9 +4,10 @@
 
    Three reading levels share every page:
      little  ages 4 to 7, read aloud          story/little/
-     kids    ages 8 to 12                     story/
+     kids    ages 8 to 12                     the site's home page (story/ redirects there)
      adults  deeper text with sources         story/adults/
-   Each level's index.html sets window.LEVEL and window.STORY_ROOT (the path back to story/). */
+   Each level's index.html sets window.LEVEL and window.STORY_ROOT (the path to story/); the home page also
+   sets window.STORY_HOME (the path to the site root, otherwise STORY_ROOT + '../'). The chart is at chart/. */
 (function () {
   'use strict';
   var D = window.INVENTIONS, ART = window.ART || { get: function () { return null; } };
@@ -14,7 +15,10 @@
   var PHOTOS = window.PHOTOS || {};
   var NOW = D.now;
   var LEVEL = window.LEVEL || 'kids', ROOT = window.STORY_ROOT || '';
-  var CHART = ROOT + '../';
+  var HOME = window.STORY_HOME != null ? window.STORY_HOME : ROOT + '../';
+  var CHART = HOME + 'chart/';
+  // the ages 8 to 12 book is the home page; the other levels live under story/
+  function levelHref(k) { return k === 'kids' ? (HOME || './') : HOME + 'story/' + LEVELS[k].path; }
 
   var LEVELS = {
     little: {
@@ -226,7 +230,7 @@
   function renderLevels(p) {
     levelsNav.innerHTML = ['little', 'kids', 'adults'].map(function (k) {
       var v = LEVELS[k];
-      return '<a href="' + ROOT + v.path + '#' + p.id + '" title="' + v.name + '"' + (k === LEVEL ? ' class="on" aria-current="true"' : '') + '>' + v.label + '</a>';
+      return '<a href="' + levelHref(k) + '#' + p.id + '" title="' + v.name + '"' + (k === LEVEL ? ' class="on" aria-current="true"' : '') + '>' + v.label + '</a>';
     }).join('');
   }
 
@@ -264,7 +268,7 @@
       '<p class="note">' + L.note + ' ' + D.techs.length + ' inventions and discoveries, and ' + D.losses.length + ' times people forgot what they knew, in ' + CHAPTERS.length + ' chapters. ' +
       'Turn the pages with the buttons, the arrow keys or a swipe.</p>' +
       '<p class="note">Also for ' + ['little', 'kids', 'adults'].filter(function (k) { return k !== LEVEL; }).map(function (k) {
-        return '<a href="' + ROOT + LEVELS[k].path + '">' + LEVELS[k].name.replace(/^For /, '').replace(/^Ages/, 'ages') + '</a>';
+        return '<a href="' + levelHref(k) + '">' + LEVELS[k].name.replace(/^For /, '').replace(/^Ages/, 'ages') + '</a>';
       }).join(' and ') + ', and as an <a href="' + CHART + '">interactive chart</a>.</p>' +
       '</div></section>';
   }
